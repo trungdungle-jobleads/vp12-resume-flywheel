@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Resume Flywheel — Storyboard</title>
+<style>
+  /* Neutral greys on purpose: no blue cast, so the warm off-white paper of the
+     sketches stays the only tinted thing on the page. */
+  :root{
+    --bg:#f5f5f5; --panel:#ffffff; --ink:#232323; --muted:#6e6e6e; --line:#e4e4e4;
+    --chip:#efefef; --accent:#e8552b; --frame:#ededed; --shadow:0 1px 2px rgba(0,0,0,.06),0 6px 18px rgba(0,0,0,.06);
+    --s1:#e8552b; --s2:#5566d6; --s3:#2f9e6f; --s4:#c48a12; --s5:#8a4fd0; --s6:#0f9bb0;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{ --bg:#161616; --panel:#202020; --ink:#ececec; --muted:#9a9a9a; --line:#323232;
+      --chip:#2b2b2b; --frame:#101010; --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35); }
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{background:var(--bg);color:var(--ink);
+    font:14px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;}
+  header.top{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 88%,transparent);
+    backdrop-filter:saturate(1.2) blur(8px);border-bottom:1px solid var(--line);padding:14px 20px;}
+  .top h1{margin:0 0 2px;font-size:16px;letter-spacing:.2px}
+  .top .sub{color:var(--muted);font-size:12.5px}
+  .bar{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;align-items:center}
+  .bar button{font:inherit;font-size:12.5px;cursor:pointer;border:1px solid var(--line);
+    background:var(--panel);color:var(--ink);padding:5px 11px;border-radius:999px;transition:.12s}
+  .bar button:hover{border-color:var(--muted)}
+  .bar button.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+  .bar .spacer{flex:1}
+  .bar .count{color:var(--muted);font-size:12px}
+
+  main{padding:18px 20px 60px}
+  .grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(290px,1fr))}
+
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden;
+    box-shadow:var(--shadow);display:flex;flex-direction:column}
+  .card .head{display:flex;align-items:center;gap:8px;padding:10px 12px 8px}
+  .dot{width:9px;height:9px;border-radius:50%;flex:none}
+  .scene{font-weight:700;font-size:12.5px;letter-spacing:.2px}
+  .shot{color:var(--muted);font-size:12.5px;font-weight:600}
+  .tc{margin-left:auto;font-variant-numeric:tabular-nums;font-size:11.5px;color:var(--muted);
+    background:var(--chip);padding:2px 7px;border-radius:6px;white-space:nowrap}
+
+  /* Sketch sits right under the header, so the frames line up across a row
+     no matter how long the spec text below them runs. */
+  figure.frame{margin:0;aspect-ratio:16/9;background:var(--frame);
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;position:relative}
+  figure.frame img{width:100%;height:100%;object-fit:cover;display:block}
+
+  dl.meta{margin:0;padding:10px 12px 12px;display:grid;gap:6px}
+  dl.meta > div{display:grid;grid-template-columns:52px 1fr;gap:8px;align-items:start}
+  dl.meta dt{margin:0;color:var(--muted);font-size:10.5px;text-transform:uppercase;letter-spacing:.6px;
+    padding-top:1px}
+  dl.meta dd{margin:0;font-size:12.5px}
+  dd.vo{font-weight:600}
+  dd.spec{color:var(--muted)}
+
+  .vswitch{position:absolute;right:8px;bottom:8px;display:none;align-items:center;gap:2px;
+    background:color-mix(in srgb,var(--panel) 82%,transparent);backdrop-filter:blur(6px);
+    border:1px solid var(--line);border-radius:999px;padding:2px;box-shadow:var(--shadow)}
+  .vswitch.on{display:flex}
+  .vswitch button{font:inherit;font-size:13px;line-height:1;cursor:pointer;border:0;background:transparent;
+    color:var(--ink);padding:3px 7px;border-radius:999px;transition:.12s}
+  .vswitch button:hover{background:var(--chip)}
+  .vswitch .idx{font-size:10.5px;color:var(--muted);font-variant-numeric:tabular-nums;
+    min-width:26px;text-align:center;user-select:none}
+  .vswitch .idx.alt{color:var(--accent);font-weight:600}
+  .ph{color:var(--muted);text-align:center;font-size:11.5px;padding:8px;line-height:1.4}
+  .ph b{display:block;font-size:12.5px;color:var(--ink);margin-bottom:2px;font-variant-numeric:tabular-nums}
+  .ph span{opacity:.8}
+</style>
+</head>
+<body>
+<header class="top">
+  <h1>Resume Flywheel — Storyboard Sketches</h1>
+  <div class="sub">JobLeads brand / product film · Scenes 1–6 · 32 shots · 16:9 sketches (Nano Banana Pro)</div>
+  <div class="bar" id="bar">
+    <button data-f="all" class="on">All</button>
+    <button data-f="1">Scene 1 · Hook</button>
+    <button data-f="2">Scene 2 · Wound</button>
+    <button data-f="3">Scene 3 · Reframe</button>
+    <button data-f="4">Scene 4 · Build</button>
+    <button data-f="5">Scene 5 · Find</button>
+    <button data-f="6">Scene 6 · Tailor</button>
+    <span class="spacer"></span>
+    <span class="count" id="count"></span>
+  </div>
+</header>
+<main><div class="grid" id="grid"></div></main>
+
+<script>
+const SCENES = {
+  1:{name:"Hook",       color:"var(--s1)"},
+  2:{name:"Wound",      color:"var(--s2)"},
+  3:{name:"Reframe",    color:"var(--s3)"},
+  4:{name:"Build",      color:"var(--s4)"},
+  5:{name:"Find",       color:"var(--s5)"},
+  6:{name:"Tailor",     color:"var(--s6)"},
+};
+
+const SHOTS = [
+  {s:1,sh:"1",  id:"s1_sh1",  tc:"0–0.75s", vo:"(silence)", cam:"Over-the-shoulder, slow push-in toward the screen", spec:"Desk, cool flat window daylight, still air. Email compose window, a job application: recipient, subject “Application – Project Manager – Sarah Bennett”, 2–3 polite lines, attachment chip Sarah_Bennett_Resume.pdf. No text overlays."},
+  {s:1,sh:"2",  id:"s1_sh2",  tc:"0.75–3s", vo:"“Your resume has four jobs.”", cam:"Push-in continues, compose window fills frame", spec:"Hero card “Your resume has 4 jobs.” slams, synced to first word. Application and attached resume stay readable underneath, Send button visible bottom of window (plants 3b)."},
+  {s:1,sh:"3a", id:"s1_sh3a", tc:"3–4.25s", vo:"“Most people only use it…”", cam:"Medium close-up on her face, static", spec:"Autopilot, slight tiredness. Application number forty. Daytime casual top, coffee mug."},
+  {s:1,sh:"3b", id:"s1_sh3b", tc:"4.25–5.5s", vo:"“…for one.”", cam:"Close-up insert on the screen, static", spec:"Cursor hits Send. Triple sync: click + spoken “one” + hero card “You use 1.”"},
+  {s:1,sh:"4",  id:"s1_sh4",  tc:"5.5–6s", vo:"(silence)", cam:"Back to her face, medium close-up, static", spec:"Half-beat. Into the wound."},
+
+  {s:2,sh:"1a", id:"s2_sh1a", tc:"6–6.5s", vo:"“You send it out.”", cam:"Static close on screen + hand", spec:"Desk, morning, cool grey window light. Work blouse, ceramic coffee mug right of laptop, laptop square to desk. Cursor hits Send, email whooshes off."},
+  {s:2,sh:"1b", id:"s2_sh1b", tc:"6.5–7s", vo:"(continues)", cam:"Same framing, slight reposition", spec:"Same desk, midday, flat overcast light. Casual knit, water glass, notebook, laptop angled slightly left. Second Send click, different job on screen."},
+  {s:2,sh:"1c", id:"s2_sh1c", tc:"7–7.5s", vo:"(continues)", cam:"Same framing", spec:"Same desk, evening lamplight. Cardigan, tea mug, desk tidied differently, laptop angled right. Third Send click. Constant anchor: the click. Reads as weeks of applying."},
+  {s:2,sh:"2a", id:"s2_sh2a", tc:"7.5–8.5s", vo:"“You wait.”", cam:"Medium side-on through window reflections, shallow DOF, static", spec:"Coffee shop, morning: window seat, street soft-focus behind glass, cool morning sun, muted grade. Coat and scarf, cappuccino. She checks her iPhone: mail app, no new messages. Hopeful glance fades, phone face-down."},
+  {s:2,sh:"2b", id:"s2_sh2b", tc:"8.5–9.6s", vo:"(silence)", cam:"Over-the-shoulder, slow push-in past her into the laptop", spec:"Her desk, afternoon: flat grey light, still room. Same-day casual, the mug from 1a now empty. Lands on the empty inbox: “No new messages.” She does not move."},
+  {s:2,sh:"2c", id:"s2_sh2c", tc:"9.6–11.5s", vo:"(silence)", cam:"Close on her phone-lit face, then frame freezes: bullet-time orbit around the bed", spec:"Bedroom, night: dark, only the phone screen glowing. Sleep shirt, duvet, room barely readable. One last check, empty. Phone sinks to her chest, eyes to the ceiling. Music thins to a held breath. Single signature camera moment of the film."},
+  {s:2,sh:"3",  id:"s2_sh3",  tc:"11.5–13s", vo:"“Nothing.”", cam:"Full-frame graphic, no camera", spec:"Full-frame hero card on near-dark brand-styled frame, synced on the word. Total music and ambient drop. Her absence from frame is the void."},
+  {s:2,sh:"4",  id:"s2_sh4",  tc:"13–14.5s", vo:"“That silence isn’t about you.”", cam:"Closest framing of the film, static", spec:"Back at her desk, SAME NIGHT as shot 2c, minutes later. Apartment fully dark, no lamps, face lit only by laptop glow. Expression quietly baffled, a slow blink on the line. Subtitle only, this line belongs to her face."},
+  {s:2,sh:"5",  id:"s2_sh5",  tc:"14.5–16.5s", vo:"“It’s a resume doing one job instead of four.”", cam:"Slow push-in on the screen", spec:"Her resume open full-screen, clean but lifeless, cursor idle. The culprit. Hands off into the reframe, which opens on the same framing."},
+
+  {s:3,sh:"1",  id:"s3_sh1",  tc:"16.5–18.5s", vo:"“Your resume is more than a document.”", cam:"Push-in continues, then the resume lifts toward camera", spec:"Continuous from Scene 2 shot 5. On “more” the resume detaches from the laptop screen, sheds the interface, floats toward camera while the dark room dissolves into a clean flat brand-styled background. Three beats: lift, center, hold. No particles/swirl/3D spin. First non-real moment."},
+  {s:3,sh:"2",  id:"s3_sh2",  tc:"18.5–21.5s", vo:"“It’s the centerpiece of your entire job search.”", cam:"Static composed frame, no movement", spec:"Still in the designed environment. Floating resume holds exact center. Hero card “The centerpiece of your job search.” above it, synced on the line. Nothing else in frame. Flywheel visual reserved for the payoff scene."},
+  {s:3,sh:"3",  id:"s3_sh3",  tc:"21.5–26s", vo:"“Get all four right, and that silence turns into interview invitations.”", cam:"One continuous medium shot, static", spec:"Cut back to the real world. The turn of the film: warmth enters the grade, a soft dawn-like glow rising (moved from night to early morning). She sits up, straightens posture, quiet resolve. Subtitle only. Hard cut on next word “First”."},
+
+  {s:4,sh:"1",  id:"s4_sh1",  tc:"26–27s", vo:"“First, it has to show your full worth.”", cam:"Hard cut, full-frame document, static", spec:"Hard cut back into the designed document environment. Resume fills frame: clean, complete, professional page, header “Sarah Bennett, Project Manager”. NO profile photo (US/UK convention). Bright and clean, subtly warmer than Scene 3. No product UI yet."},
+  {s:4,sh:"2",  id:"s4_sh2",  tc:"27–28.5s", vo:"“Your skills…”", cam:"Smooth glide down the page to the skills section", spec:"Lands on a complete, strong skills section; on arrival it gently lifts and highlights (no content change, nothing rewrites). Credible PM skills from the master resume. Presenting evidence, not fixing."},
+  {s:4,sh:"3",  id:"s4_sh3",  tc:"28.5–30s", vo:"“…your experience…”", cam:"Glide continues to the experience section", spec:"Same grammar: camera arrives, experience block gently lifts and highlights. Concrete, quantified achievement bullets visible and readable. Full potential shown as a finished state."},
+  {s:4,sh:"4",  id:"s4_sh4",  tc:"30–33s", vo:"“…everything you bring to the table.”", cam:"Pull-back: page settles into laptop, out to medium-wide of her", spec:"Mirror of the Scene 3 lift-off: resume recedes back inside the laptop display as camera pulls out into the real room. Warm afternoon daylight, fully arrived for the first time. Sage-grey knit. Small satisfied nod, eyes on screen."},
+
+  {s:5,sh:"1",  id:"s5_sh1",  tc:"33–36s", vo:"“Once it does, it can go to work.”", cam:"Opens on laptop screen, then push-in dives INTO the screen", spec:"Bridge (~0.75s), continuous with Scene 4’s warm afternoon. Master resume in the JobLeads upload view, she clicks upload. Camera pushes in, real room falls away into the clean product-UI space (Aurora). Skills lift off as tagged chips. First JobLeads UI of the film."},
+  {s:5,sh:"2",  id:"s5_sh2",  tc:"36–40s", vo:"“It finds the jobs that actually fit you.”", cam:"Locked frame, the animation carries the motion", spec:"V-04 Concept B matching animation reused: skill chips gather center, job cards slide in from the sides, matches light up, non-matches fade back. A curated shortlist forms. No scrolling/searching: the work happens to her."},
+  {s:5,sh:"3",  id:"s5_sh3",  tc:"40–44s", vo:"“Even the ones hiding behind a title you’d never search for.”", cam:"UI first, then a ~1.5s live-action insert, medium close-up", spec:"Differentiator beat: 2–3 cards with unexpected titles. Background is PM; strongest matches read “Operations Lead” and “Program Director”. Reaction insert: she leans in, surprised genuine interest, first spark. Intermediate light state."},
+  {s:5,sh:"4",  id:"s5_sh4",  tc:"44–49s", vo:"“Because your resume knows more about you than a job title ever will.”", cam:"Static composed frame", spec:"Hero card with the thesis line over the DIMMED match composition: resume left, matched job cards right, both softly darkened so the card reads first. Claim over evidence. Deliberately NOT full-frame."},
+
+  {s:6,sh:"1",  id:"s6_sh1",  tc:"49–51.5s", vo:"“Found the one you want?”", cam:"Continuous from Scene 5’s match composition, one card pulls forward", spec:"The shortlist is still on screen. On the question, ONE job card pulls forward and expands into a full job view: the role she wants (Senior Project Manager at the fictional target company). The others recede. Same UI world, seconds later."},
+  {s:6,sh:"2",  id:"s6_sh2",  tc:"51.5–54.5s", vo:"“Sending the same resume everywhere won’t win it.”", cam:"Static composed frame", spec:"Warning beat, stylized: the master resume duplicates into a fan of identical copies drifting toward many faded job cards, all greying out slightly. Same-resume-everywhere as noise, not effort. Restrained: 3–4 copies, muted motion."},
+  {s:6,sh:"3",  id:"s6_sh3",  tc:"54.5–61.5s", vo:"“It needs to be tailored to that role: the right skills, the language the company uses, matched to what they’re really looking for.”", cam:"Slow lateral drift across a split-screen composition", spec:"THE CENTERPIECE MOVE of the product half (7s): job description left, her resume right. As the VO names each element the product tailors the document: requirements highlight left, matching skills reorder to top right, a phrase adopts the company’s wording, a summary line realigns. Three visible changes. First document transform of the film."},
+  {s:6,sh:"4",  id:"s6_sh4",  tc:"61.5–63s", vo:"“That’s how…”", cam:"Live-action insert: close on screen and hand, static", spec:"She clicks Apply with the tailored resume. Deliberate, confident — the bookend to Scene 1’s resigned send click. Warm post-turn light. The click launches the consequence chain of the final line."},
+  {s:6,sh:"5",  id:"s6_sh5",  tc:"63–65.5s", vo:"“…it gets past the filters,”", cam:"Existing animation, as built", spec:"Reuse of the existing ATS scan animation: the tailored resume passing the scan, checks lighting up. Hero card “Past the filters.” synced, replacing the subtitle."},
+  {s:6,sh:"6a", id:"s6_sh6a", tc:"65.5–67.5s", vo:"“beats the competition,”", cam:"Live action, medium-wide across the office desk, static, shallow DOF", spec:"The hiring manager’s desk: a tall pile of printed resumes, his hand lifting HER resume off the top of the stack. The pile in soft focus carries “the competition”; her document is the one in his hands."},
+  {s:6,sh:"6b", id:"s6_sh6b", tc:"67.5–70s", vo:"“and makes the hiring manager want to meet you.”", cam:"Cut in: close-up on the hiring manager’s face, static", spec:"He reads, pauses, and a genuine smile forms. He gives a small nod and reaches for his phone; the shot cuts BEFORE we see what he does. The invitation itself lands in Scene 8, on her side, as the payoff."},
+];
+
+const grid = document.getElementById('grid');
+const countEl = document.getElementById('count');
+
+/* ---------------------------------------------------------------------------
+   Image variants
+   Convention: <id>.png is variant 1. Further variants are named
+   <id>_v2.png, <id>_v3.png ... and are discovered automatically on load.
+   To add one: drop the file into storyboard-sketches/, commit, done.
+   No edit to this file needed. The per-shot choice is kept in localStorage.
+--------------------------------------------------------------------------- */
+const PROBE_UP_TO = 6;                    // looks for _v2 through _v6
+const STORE = 'flywheelVariant.v1';
+const src = (id, i) => `storyboard-sketches/${id}${i===0?'':'_v'+(i+1)}.png`;
+
+const picks = (()=>{ try { return JSON.parse(localStorage.getItem(STORE)) || {}; }
+                     catch { return {}; } })();
+const savePicks = ()=>{ try { localStorage.setItem(STORE, JSON.stringify(picks)); } catch {} };
+
+const exists = url => new Promise(res=>{
+  const im = new Image();
+  im.onload = ()=>res(true); im.onerror = ()=>res(false);
+  im.src = url;
+});
+
+async function findVariants(id){
+  const found = [0];
+  for(let i=1; i<PROBE_UP_TO; i++){
+    if(await exists(src(id,i))) found.push(i); else break;
+  }
+  return found;
+}
+
+function render(filter){
+  grid.innerHTML = '';
+  const list = SHOTS.filter(x => filter==='all' || String(x.s)===String(filter));
+  for(const x of list){
+    const sc = SCENES[x.s];
+    const card = document.createElement('article');
+    card.className = 'card';
+    card.innerHTML = `
+      <div class="head">
+        <span class="dot" style="background:${sc.color}"></span>
+        <span class="scene">Scene ${x.s} · ${sc.name}</span>
+        <span class="shot">Shot ${x.sh}</span>
+        <span class="tc">${x.tc}</span>
+      </div>
+      <figure class="frame">
+        <img alt="Scene ${x.s} Shot ${x.sh}" loading="lazy">
+        <div class="vswitch">
+          <button class="prev" title="Previous image" aria-label="Previous image">‹</button>
+          <span class="idx">1/1</span>
+          <button class="next" title="Next image" aria-label="Next image">›</button>
+        </div>
+      </figure>
+      <dl class="meta">
+        <div><dt>VO</dt><dd class="vo">${x.vo}</dd></div>
+        <div><dt>Camera</dt><dd>${x.cam}</dd></div>
+        <div><dt>Spec</dt><dd class="spec">${x.spec}</dd></div>
+      </dl>`;
+
+    const img = card.querySelector('img');
+    const sw  = card.querySelector('.vswitch');
+    const idx = card.querySelector('.idx');
+    const fig = card.querySelector('figure');
+
+    const miss = ()=> fig.replaceChildren(Object.assign(document.createElement('div'),
+      {className:'ph', innerHTML:`<b>${x.id}.png</b><span>not generated yet</span>`}));
+    img.onerror = miss;
+    img.src = src(x.id, 0);
+
+    findVariants(x.id).then(vars=>{
+      if(vars.length < 2) return;                 // only one version -> no switcher
+      let at = vars.indexOf(picks[x.id] ?? 0);
+      if(at < 0) at = 0;
+      const show = ()=>{
+        img.onerror = miss;
+        img.src = src(x.id, vars[at]);
+        idx.textContent = `${at+1}/${vars.length}`;
+        idx.classList.toggle('alt', vars[at] !== 0);
+        picks[x.id] = vars[at]; savePicks();
+      };
+      sw.classList.add('on');
+      card.querySelector('.prev').onclick = ()=>{ at = (at-1+vars.length)%vars.length; show(); };
+      card.querySelector('.next').onclick = ()=>{ at = (at+1)%vars.length; show(); };
+      show();
+    });
+
+    grid.appendChild(card);
+  }
+  countEl.textContent = `${list.length} Shot${list.length===1?'':'s'}`;
+}
+
+document.getElementById('bar').addEventListener('click', e=>{
+  const b = e.target.closest('button'); if(!b) return;
+  document.querySelectorAll('#bar button').forEach(x=>x.classList.toggle('on', x===b));
+  render(b.dataset.f);
+});
+
+render('all');
+</script>
+</body>
+</html>
